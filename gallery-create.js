@@ -107,6 +107,9 @@ function createGalleryMarkup(elements) {
       refs.modalImage.src = sources[indexOfCurrentImg - 1];
       console.log(indexOfCurrentImg);
     }
+
+    
+
   }
   
   //ArrowRight
@@ -126,3 +129,16 @@ function createGalleryMarkup(elements) {
       console.log(indexOfCurrentImg + 1);
     }
   }
+
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  lazyImages.forEach(image =>{
+    image.addEventListener('load', onImageLoaded, {once: true});
+  } );
+  function onImageLoaded(evt) {
+    console.log('Картинка загрузилась!');
+    console.log(evt);
+    console.log(evt.target);
+    evt.target.classList.add('appear');
+  }
+
+ // , {once: true}
